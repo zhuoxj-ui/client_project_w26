@@ -1,0 +1,655 @@
+
+/* ------------------------------------------------------------
+   1. DESIGN TOKENS
+   ------------------------------------------------------------ */
+:root {
+  --navy:        #00274c;
+  --maize:       #ffcb05;
+  --blue-mid:    #1f4e79;
+  --blue-light:  #b9d4ee;
+  --blue-bg:     #eaf2fa;
+  --white:       #ffffff;
+  --text:        #222222;
+  --text-muted:  #555555;
+  --footer-bg:   #0a1628;
+
+  --font-display: 'Montserrat', sans-serif;
+  --font-body:    'Poppins', sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
+  --shadow-md: 0 6px 18px rgba(0,0,0,0.13);
+  --transition: 0.22s ease;
+}
+
+/* ------------------------------------------------------------
+   2. BASE
+   ------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--blue-bg);
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 6vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3.5vw, 1.65rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  line-height: 1.3;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+}
+
+p { margin: 0 0 0.8rem; }
+
+ul, ol {
+  padding-left: 1.25rem;
+  margin: 0 0 0.8rem;
+}
+
+li { margin-bottom: 0.45rem; }
+
+a {
+  color: var(--blue-mid);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ------------------------------------------------------------
+   3. SKIP LINK
+   ------------------------------------------------------------ */
+.skip a {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  background: var(--maize);
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 10px 20px;
+  z-index: 9999;
+  border-radius: 0 0 var(--radius-sm) 0;
+  transition: top var(--transition);
+  text-decoration: none;
+}
+
+.skip a:focus { top: 0; }
+
+
+/* ------------------------------------------------------------
+   4. FOCUS STYLES
+   ------------------------------------------------------------ */
+*:focus {
+  outline: 3px solid var(--maize);
+  outline-offset: 3px;
+}
+
+nav a:focus {
+  outline: 3px solid var(--white);
+  outline-offset: 3px;
+}
+
+
+/* ------------------------------------------------------------
+   5. HEADER & NAVIGATION
+   ------------------------------------------------------------ */
+header {
+  background-color: var(--navy);
+  padding: 0.75rem 1.25rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header img {
+  width: 65px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  justify-content: center;
+}
+
+nav li { list-style: none; margin: 0; }
+
+nav a {
+  display: block;
+  color: var(--maize);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+}
+
+nav a:hover {
+  color: var(--navy);
+  background-color: var(--maize);
+}
+
+nav a[aria-current="page"] {
+  color: var(--navy);
+  background-color: var(--maize);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+.welcome {
+  background-color: var(--navy);
+  background-image: url('../images/UMSI_CampusFall_UMSIBackpack_02.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  position: relative;
+}
+
+.welcome::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 39, 76, 0.72);
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.welcome h1 {
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.welcome p {
+  color: rgba(255,255,255,0.88);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  margin: 0;
+}
+
+.welcome-subtitle {
+  color: rgba(255,255,255,0.82);
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  font-family: var(--font-body);
+  font-weight: 400;
+  margin: 0.5rem 0 0;
+  max-width: 600px;
+}
+
+/* ------------------------------------------------------------
+   QUICK STEPS STRIP
+   ------------------------------------------------------------ */
+.quick-steps {
+  background-color: var(--blue-mid);
+  padding: 1.75rem 1.25rem;
+}
+
+.quick-steps-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.quick-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  color: var(--white);
+}
+
+.quick-step-num {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  background: var(--maize);
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.quick-step-text {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  padding-top: 0.2rem;
+}
+
+.quick-step-label {
+  display: block;
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  color: var(--maize);
+  margin-bottom: 0.15rem;
+}
+
+/* ------------------------------------------------------------
+   7. IMAGE DIVIDER BANDS
+   ------------------------------------------------------------ */
+.img-divider {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+
+.img-divider:not(:has(img)) {
+  height: 0;
+}
+
+.img-divider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* ------------------------------------------------------------
+   8. PAGE CONTENT WRAPPER
+   ------------------------------------------------------------ */
+.page-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Section blocks with comfortable vertical rhythm */
+.content-section {
+  padding: 2.5rem 0;
+}
+
+.content-section h2 {
+  color: var(--navy);
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--maize);
+  margin-bottom: 1.25rem;
+}
+
+
+/* ------------------------------------------------------------
+   9. WHY-USE LIST (simple styled bullets)
+   ------------------------------------------------------------ */
+.why-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.why-list li {
+  background: var(--white);
+  border-left: 5px solid var(--maize);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+  box-shadow: var(--shadow-sm);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+
+/* ------------------------------------------------------------
+   10. PATHS GRID (Start Here — 4 guided paths)
+   ------------------------------------------------------------ */
+.paths-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.paths-grid li {
+  background: var(--white);
+  border-top: 4px solid var(--maize);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+  margin: 0;
+}
+
+.paths-grid li:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.paths-grid h3 {
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+
+.paths-grid p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.paths-grid a {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--maize);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  transition: background var(--transition);
+  text-decoration: none;
+}
+
+.paths-grid a:hover {
+  background: var(--blue-mid);
+  text-decoration: none;
+}
+
+
+/* ------------------------------------------------------------
+   11. POPULAR RESOURCES BAND
+   ------------------------------------------------------------ */
+.popular-resources {
+  background-color: var(--navy);
+  padding: 2.5rem 1rem 3rem;
+  margin: 0;
+}
+
+.popular-resources .page-content > h2 {
+  color: var(--maize);
+  border-bottom-color: rgba(255,203,5,0.35);
+  text-align: center;
+}
+
+.resource-grid {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem auto 0;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.resource-grid li {
+  background: rgba(255,255,255,0.07);
+  border-left: 5px solid var(--maize);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1rem;
+  margin: 0;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.resource-grid li:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-2px);
+}
+
+.resource-grid a {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.975rem;
+  font-weight: 700;
+  color: var(--maize);
+  margin-bottom: 0.35rem;
+}
+
+.resource-grid a:hover { color: var(--white); }
+
+.resource-grid p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+}
+
+
+/* ------------------------------------------------------------
+   12. VIDEO WRAPPER (responsive 16:9)
+   ------------------------------------------------------------ */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin: 1rem 0;
+  border: 3px solid var(--maize);
+  border-radius: var(--radius-sm);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+iframe { max-width: 100%; border: none; }
+
+
+/* ------------------------------------------------------------
+   13. INNER PAGES (resume, networking, job)
+   ------------------------------------------------------------ */
+
+/* Per-page hero background images — modifier classes on .hero */
+.welcome--resume     { background-image: url('../images/MCOMMONS-SnowyCampusScenes-095.jpg'); }
+.welcome--networking { background-image: url('../images/UMSI_CareerFair_02062025_10.jpg'); }
+.welcome--job        { background-image: url('../images/MCOMMONS-FallColors2025-67.jpg'); }
+
+/* Inner page body */
+.inner-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem 3rem;
+}
+
+.inner-content h2 {
+  color: var(--navy);
+  border-bottom: 3px solid var(--maize);
+  padding-bottom: 0.4rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.inner-content h3 {
+  color: var(--blue-mid);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Resource link cards */
+.resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.875rem;
+}
+
+.resource-list li {
+  background: var(--white);
+  border-left: 5px solid var(--maize);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  margin: 0;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.resource-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.resource-list a {
+  display: block;
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.975rem;
+  margin-bottom: 0.3rem;
+}
+
+.resource-list a:hover {
+  color: var(--blue-mid);
+  text-decoration: underline;
+}
+
+.resource-list p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Numbered steps */
+.steps-list { padding-left: 1.5rem; }
+.steps-list li { margin-bottom: 0.75rem; font-size: 0.975rem; }
+
+/* FAQ */
+.faq-list { list-style: none; padding: 0; }
+.faq-list li {
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.875rem;
+  border-top: 3px solid var(--blue-light);
+}
+
+/* Figure on inner pages */
+.inner-content figure { margin: 1.5rem 0; overflow: hidden; border-radius: var(--radius-sm); }
+.inner-content figure img { width: 100%; max-height: 320px; object-fit: cover; }
+.inner-content figcaption { font-size: 0.8rem; color: #666; padding: 0.4rem 0; text-align: center; }
+
+
+/* ------------------------------------------------------------
+   14. FOOTER
+   ------------------------------------------------------------ */
+footer {
+  background-color: var(--footer-bg);
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+footer p { margin: 0; font-size: 0.875rem; }
+
+footer a { color: var(--maize); font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+
+
+/* ------------------------------------------------------------
+   15. REDUCED MOTION
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .skip a { transition: none; }
+  .welcome { background-attachment: scroll; }   /* disable parallax */
+}
+
+
+/* ------------------------------------------------------------
+   16. RESPONSIVE BREAKPOINTS
+   ------------------------------------------------------------ */
+
+/* Tablet ≥ 600px */
+@media (min-width: 600px) {
+  header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  header img { margin-bottom: 0; flex-shrink: 0; }
+
+  nav ul { justify-content: flex-start; margin: 0; }
+
+  nav a { font-size: 0.95rem; }
+
+  .why-list { grid-template-columns: 1fr 1fr; }
+
+  .paths-grid { grid-template-columns: 1fr 1fr; }
+
+  .resource-grid { grid-template-columns: 1fr 1fr; }
+
+  .img-divider { height: 280px; }
+
+  .resource-list { grid-template-columns: 1fr 1fr; }
+
+  .quick-steps-inner { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+}
+
+/* Desktop ≥ 960px */
+@media (min-width: 960px) {
+  nav a { font-size: 1rem; padding: 0.6rem 1rem; }
+
+  .welcome { min-height: 460px; }
+
+  .paths-grid { grid-template-columns: repeat(4, 1fr); }
+
+  .resource-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .why-list { grid-template-columns: repeat(3, 1fr); }
+
+  .img-divider { height: 340px; }
+}
