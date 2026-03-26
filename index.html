@@ -17,7 +17,15 @@
 
   <header>
     <img src="images/UMSI_signature_vertical_informal_solidblue.jpg" alt="UMSI Logo">
-    <nav>
+
+    <!-- Hamburger button — hidden on tablet+ via CSS -->
+    <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="resume.html">Resumes</a></li>
@@ -159,6 +167,24 @@
       <a href="https://umich.instructure.com/courses/137916">UMSI Career Development Office</a>
     </p>
   </footer>
+
+  <script>
+    // Hamburger toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const nav    = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+    });
+    // Close nav when a link is clicked (mobile UX)
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+      });
+    });
+  </script>
 
 </body>
 </html>

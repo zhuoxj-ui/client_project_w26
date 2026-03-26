@@ -8,6 +8,88 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── FAQ Accordion ── */
+    .faq-accordion {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .faq-accordion li { margin: 0; }
+
+    .faq-question {
+      width: 100%;
+      background: var(--white);
+      border: none;
+      border-left: 5px solid var(--maize);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-align: left;
+      box-shadow: var(--shadow-sm);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .faq-question:hover {
+      background: var(--blue-bg);
+    }
+
+    .faq-question[aria-expanded="true"] {
+      background: var(--navy);
+      color: var(--maize);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      background: var(--maize);
+      color: var(--navy);
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: transform var(--transition);
+    }
+
+    .faq-question[aria-expanded="true"] .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      background: var(--white);
+      border-left: 5px solid var(--maize);
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      padding: 0 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-answer.is-open {
+      max-height: 300px;
+      padding: 0.9rem 1.25rem 1rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -15,7 +97,14 @@
 
   <header>
     <img src="images/UMSI_signature_vertical_informal_solidblue.jpg" alt="UMSI Logo">
-    <nav aria-label="Main navigation">
+
+    <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="resume.html" aria-current="page">Resumes</a></li>
@@ -188,25 +277,71 @@
         </section>
       </section>
 
+      <!-- ── FAQ Accordion ── -->
       <section aria-labelledby="resume-faq">
         <h2 id="resume-faq">Resume FAQ</h2>
-        <ul class="faq-list">
+        <ul class="faq-accordion" role="list">
+
           <li>
-            <strong>How long should my resume be?</strong><br>
-            For most UMSI students and new grads, one page is best. More experienced professionals may require two pages.
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a1">
+              How long should my resume be?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a1" role="region">
+              For most UMSI students and new grads, one page is best. More experienced professionals may require two pages.
+            </div>
           </li>
+
           <li>
-            <strong>Do I need a different resume for each application?</strong><br>
-            It's wise to tailor your resume to the requirements and keywords of each opportunity.
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a2">
+              Do I need a different resume for each application?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a2" role="region">
+              It's wise to tailor your resume to the requirements and keywords of each opportunity.
+            </div>
           </li>
+
           <li>
-            <strong>Is it okay to include coursework or student projects?</strong><br>
-            Absolutely! UMSI coursework and projects are valued by employers, especially if they show relevant skills and impact.
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a3">
+              Is it okay to include coursework or student projects?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a3" role="region">
+              Absolutely! UMSI coursework and projects are valued by employers, especially if they show relevant skills and impact.
+            </div>
           </li>
+
           <li>
-            <strong>How often should I update my resume?</strong><br>
-            Update your resume every semester, after major projects, or whenever you gain a new role or responsibility.
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a4">
+              How often should I update my resume?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a4" role="region">
+              Update your resume every semester, after major projects, or whenever you gain a new role or responsibility.
+            </div>
           </li>
+
+          <li>
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a5">
+              Should I include a summary or objective statement?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a5" role="region">
+              A brief summary can help if you're changing fields or have a unique background. For most students, it's optional—use that space for experience instead.
+            </div>
+          </li>
+
+          <li>
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a6">
+              What file format should I submit?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-a6" role="region">
+              PDF is preferred unless the employer specifically requests a Word document. PDF preserves your formatting across all devices.
+            </div>
+          </li>
+
         </ul>
       </section>
 
@@ -218,6 +353,47 @@
       <a href="https://umich.instructure.com/courses/137916">UMSI Career Development Office</a>
     </p>
   </footer>
+
+  <script>
+    /* ── Hamburger nav ── */
+    const toggle = document.querySelector('.nav-toggle');
+    const nav    = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+    });
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+      });
+    });
+
+    /* ── FAQ Accordion ── */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isOpen   = btn.getAttribute('aria-expanded') === 'true';
+        const answerId = btn.getAttribute('aria-controls');
+        const answer   = document.getElementById(answerId);
+        const icon     = btn.querySelector('.faq-icon');
+
+        // Close all others
+        document.querySelectorAll('.faq-question').forEach(other => {
+          if (other !== btn) {
+            other.setAttribute('aria-expanded', 'false');
+            other.querySelector('.faq-icon').textContent = '+';
+            document.getElementById(other.getAttribute('aria-controls')).classList.remove('is-open');
+          }
+        });
+
+        // Toggle current
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        icon.textContent = isOpen ? '+' : '×';
+        answer.classList.toggle('is-open', !isOpen);
+      });
+    });
+  </script>
 
 </body>
 </html>
