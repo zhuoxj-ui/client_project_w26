@@ -35,14 +35,14 @@
     </nav>
   </header>
 
-  <main id="main">
+  <section class="welcome" aria-labelledby="welcome-heading">
+    <div class="welcome-content">
+      <h1 id="welcome-heading">Welcome to the UMSI Career Development Resource Hub</h1>
+      <p>Your one-stop shop for trusted guidance, practical tools, and expert-reviewed resources—designed for UMSI students at every stage of their career journey.</p>
+    </div>
+  </section>
 
-    <section class="welcome" aria-labelledby="welcome-heading">
-      <div class="welcome-content">
-        <h1 id="welcome-heading">Welcome to the UMSI Career Development Resource Hub</h1>
-        <p>Your one-stop shop for trusted guidance, practical tools, and expert-reviewed resources—designed for UMSI students at every stage of their career journey.</p>
-      </div>
-    </section>
+  <main id="main">
 
     <!-- ── SECTION 1: Why Use This Resource ── -->
     <div class="page-content">
@@ -105,24 +105,34 @@
     <div class="page-content">
       <section class="content-section" aria-labelledby="intro-heading">
         <h2 id="intro-heading">Your Central Hub for Career Success</h2>
-        <p>
-          Ready to take the next step? Whether you are just starting your exploration or launching
-          your career, you will find everything you need, organized and trusted.
-        </p>
-
-        <div class="video-wrapper">
-          <iframe
-            src="https://www.youtube.com/embed/GSjGeDYJ5Nk"
-            title="UMSI Career Development intro video – Summer Internship Experience"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+        <div class="intro-two-col">
+          <div class="intro-text">
+            <p>
+              Ready to take the next step? Whether you are just starting your exploration or launching
+              your career, you will find everything you need, organized and trusted.
+            </p>
+            <p>
+              UMSI students have access to dedicated career coaches, curated resources, and a strong
+              alumni network. Use this hub to navigate your journey with confidence—from first resume
+              to final offer.
+            </p>
+          </div>
+          <div>
+            <div class="video-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/GSjGeDYJ5Nk"
+                title="UMSI Career Development intro video – Summer Internship Experience"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <p>
+              <a href="https://www.youtube.com/watch?v=GSjGeDYJ5Nk" target="_blank" rel="noopener">
+                Watch on YouTube if the video does not load
+              </a>
+            </p>
+          </div>
         </div>
-        <p>
-          <a href="https://www.youtube.com/watch?v=GSjGeDYJ5Nk" target="_blank" rel="noopener">
-            Watch on YouTube if the video does not load
-          </a>
-        </p>
       </section>
     </div>
 
@@ -165,6 +175,7 @@
   <footer>
     <p>University of Michigan School of Information |
       <a href="https://umich.instructure.com/courses/137916">UMSI Career Development Office</a>
+      | &copy; <span id="footer-year"></span>
     </p>
   </footer>
 
@@ -184,6 +195,9 @@
         nav.classList.remove('is-open');
       });
     });
+
+    /* Dynamic year */
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
 
 </body>

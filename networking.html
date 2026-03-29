@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Networking &amp; Connections – UMSI Career Hub</title>
+  <title>Networking &amp; Connections</title>
   <link rel="stylesheet" href="css/html5reset.css">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,14 +32,14 @@
     </nav>
   </header>
 
-  <main id="main">
+  <section class="welcome welcome--networking" aria-labelledby="page-title">
+    <div class="welcome-content">
+      <h1 id="page-title">Networking Resources</h1>
+      <p class="welcome-subtitle">Build your network, send outreach messages, and prepare for informational interviews.</p>
+    </div>
+  </section>
 
-    <section class="welcome welcome--networking" aria-labelledby="page-title">
-      <div class="welcome-content">
-        <h1 id="page-title">Networking Resources</h1>
-        <p class="welcome-subtitle">Build your network, send outreach messages, and prepare for informational interviews.</p>
-      </div>
-    </section>
+  <main id="main">
 
     <div class="quick-steps" aria-label="Quick start steps">
       <div class="quick-steps-inner">
@@ -67,7 +67,18 @@
       </div>
     </div>
 
-    <div class="inner-content">
+    <div class="inner-layout">
+      <aside class="sidebar" aria-label="Page sections">
+        <span class="sidebar-label">On this page</span>
+        <ul class="sidebar-nav">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#plan">Build a Plan</a></li>
+          <li><a href="#outreach">Outreach</a></li>
+          <li><a href="#info-interviews">Interviews &amp; Events</a></li>
+        </ul>
+      </aside>
+
+      <div class="inner-content">
 
       <section aria-labelledby="overview">
         <h2 id="overview">What You Can Do on This Page</h2>
@@ -186,12 +197,14 @@
         </ul>
       </section>
 
+      </div>
     </div>
   </main>
 
   <footer>
     <p>University of Michigan School of Information |
       <a href="https://umich.instructure.com/courses/137916">UMSI Career Development Office</a>
+      | &copy; <span id="footer-year"></span>
     </p>
   </footer>
 
@@ -209,6 +222,9 @@
         nav.classList.remove('is-open');
       });
     });
+
+    /* Dynamic year */
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
 
 </body>

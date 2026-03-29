@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Planning Your Job/Internship Search – UMSI Career Hub</title>
+  <title>Planning Your Job/Internship Search</title>
   <link rel="stylesheet" href="css/html5reset.css">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,14 +32,14 @@
     </nav>
   </header>
 
-  <main id="main">
+  <section class="welcome welcome--job" aria-labelledby="page-title">
+    <div class="welcome-content">
+      <h1 id="page-title">Job &amp; Internship Seeking Help</h1>
+      <p class="welcome-subtitle">Plan your search, find positions efficiently, and stay on track each week.</p>
+    </div>
+  </section>
 
-    <section class="welcome welcome--job" aria-labelledby="page-title">
-      <div class="welcome-content">
-        <h1 id="page-title">Internship Seeking Help</h1>
-        <p class="welcome-subtitle">Plan your search, find positions efficiently, and stay on track each week.</p>
-      </div>
-    </section>
+  <main id="main">
 
     <div class="quick-steps" aria-label="Quick start steps">
       <div class="quick-steps-inner">
@@ -67,7 +67,21 @@
       </div>
     </div>
 
-    <div class="inner-content">
+    <div class="inner-layout">
+      <aside class="sidebar" aria-label="Page sections">
+        <span class="sidebar-label">On this page</span>
+        <ul class="sidebar-nav">
+          <li><a href="#job-overview">Overview</a></li>
+          <li><a href="#job-step1">Step 1: Plan</a></li>
+          <li><a href="#job-step2">Step 2: Find</a></li>
+          <li><a href="#job-step3">Step 3: Prep</a></li>
+          <li><a href="#job-tools">Optional Tools</a></li>
+          <li><a href="#job-special">Special Situations</a></li>
+          <li><a href="#job-by-track">By Career Track</a></li>
+        </ul>
+      </aside>
+
+      <div class="inner-content">
 
       <section aria-labelledby="job-overview">
         <h2 id="job-overview">Planning Your Job/Internship Search</h2>
@@ -200,12 +214,14 @@
         </ul>
       </section>
 
+      </div>
     </div>
   </main>
 
   <footer>
     <p>University of Michigan School of Information |
       <a href="https://umich.instructure.com/courses/137916">UMSI Career Development Office</a>
+      | &copy; <span id="footer-year"></span>
     </p>
   </footer>
 
@@ -223,6 +239,9 @@
         nav.classList.remove('is-open');
       });
     });
+
+    /* Dynamic year */
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
 
 </body>

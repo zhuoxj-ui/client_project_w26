@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found </title>
+  <link rel="stylesheet" href="css/html5reset.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <div class="skip"><a href="#main">Skip to Main Content</a></div>
+
+  <header>
+    <img src="images/UMSI_signature_vertical_informal_solidblue.jpg" alt="UMSI Logo">
+
+    <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="resume.html">Resumes</a></li>
+        <li><a href="networking.html">Networking &amp; Connections</a></li>
+        <li><a href="job.html">Planning Your Job/Internship Search</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="error-page">
+      <p class="error-code">4<span>0</span>4</p>
+      <h1 class="error-title">Page Not Found</h1>
+      <p class="error-desc">
+        Looks like this page took a wrong turn on the career path.
+        The page you're looking for doesn't exist or may have moved.
+      </p>
+      <ul class="error-links">
+        <li><a href="index.html">Back to Home</a></li>
+        <li><a href="resume.html" class="secondary">Resume Resources</a></li>
+        <li><a href="networking.html" class="secondary">Networking</a></li>
+        <li><a href="job.html" class="secondary">Job Search</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>University of Michigan School of Information |
+      <a href="https://umich.instructure.com/courses/137916">UMSI Career Development Office</a>
+      | &copy; <span id="footer-year"></span>
+    </p>
+  </footer>
+
+  <script>
+    /* Hamburger nav */
+    const toggle = document.querySelector('.nav-toggle');
+    const nav    = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+    });
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+      });
+    });
+
+    /* Dynamic year */
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
